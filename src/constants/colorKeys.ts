@@ -4,4 +4,5 @@ export const colorKeys = {
   PURPLE: '#451e3e',
   DARKRED: '#651e3e',
   RED: '#851e3e',
+  HONEYDEW: '#F0FFF0',
 };

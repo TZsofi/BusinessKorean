@@ -23,7 +23,7 @@ export default class login extends React.Component<loginScreenProps, any> {
   // A felső sáv kialakítása
   public componentDidMount() {
     this.navListener = this.props.navigation.addListener('didFocus', () => {
-      StatusBar.setBarStyle('dark-content');
+      StatusBar.setBarStyle('light-content');
       StatusBar.setBackgroundColor(colorKeys.RED);
       StatusBar.setTranslucent(false);
     });
@@ -40,23 +40,23 @@ export default class login extends React.Component<loginScreenProps, any> {
           colors={[RED, DARKRED, PURPLE, DARKPUPRPLE, DARKBLUE]}
           style={styles.linearGradient}>
           <View style={styles.container}>
-            <Text style={styles.appocska}>Appocska</Text>
+            <Text style={styles.title}>Business Korean</Text>
             <TouchableOpacity
-              style={styles.newFacebookContainer}
+              style={styles.logosAndTextContainer}
               onPress={this.onPressFacebookButton}>
               <Image source={facebookLogo} style={styles.facebookLogo} />
-              <Text style={styles.facebookText}> Login with Facebook </Text>
+              <Text style={styles.loginText}> Login with Facebook </Text>
             </TouchableOpacity>
             <View style={styles.orContainer}>
               <Image source={line} style={styles.lineImage} />
-              <Text style={styles.facebookText}>OR</Text>
+              <Text style={styles.orText}>OR</Text>
               <Image source={line} style={styles.lineImage} />
             </View>
             <TouchableOpacity
-              style={styles.newFacebookContainer}
+              style={styles.logosAndTextContainer}
               onPress={this.onPressFacebookButton}>
               <Image source={googleLogo} style={styles.googleLogo} />
-              <Text style={styles.facebookText}> Login with Google </Text>
+              <Text style={styles.loginText}> Login with Google </Text>
             </TouchableOpacity>
           </View>
           <View style={styles.seoulImageContainer}>
@@ -73,6 +73,7 @@ export default class login extends React.Component<loginScreenProps, any> {
     //TODO
   };
 }
+const {HONEYDEW} = colorKeys;
 
 const styles = StyleSheet.create({
   linearGradient: {
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   seoulImage: {
-    tintColor: '#F0FFF0',
+    tintColor: HONEYDEW,
     height: 280,
     width: '100%',
     resizeMode: 'stretch',
@@ -93,65 +94,48 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    margin: 25,
+    paddingTop: 10,
   },
-  appocska: {
+  title: {
     fontFamily: 'god_bless_america',
-    color: '#FAF9F9',
+    color: HONEYDEW,
     fontSize: 70,
-    marginBottom: 10,
+    marginBottom: 120,
   },
-  newFacebookContainer: {
-    margin: 15,
-    width: '75%',
-    height: '8%',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-  },
-  facebookContainer: {
-    margin: 15,
-    backgroundColor: '#3C5A99',
-    width: '75%',
-    height: '8%',
-    flexDirection: 'row',
-  },
-  facebookImageView: {
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-    flex: 1,
-  },
-  facebookTextView: {
-    flex: 5,
+  logosAndTextContainer: {
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'row',
   },
-  facebookText: {
-    color: '#FAF9F9',
+  loginText: {
+    color: HONEYDEW,
+    marginLeft: 8,
+  },
+  orText: {
+    color: HONEYDEW,
   },
   lineImage: {
-    tintColor: '#FAF9F9',
+    tintColor: HONEYDEW,
     height: 5,
     width: 120,
     marginRight: 20,
     marginLeft: 20,
     marginTop: 10,
+    resizeMode: 'stretch',
   },
   facebookLogo: {
     height: 40,
     width: 45,
-    padding: 5,
-    flex: 1,
-    resizeMode: 'contain',
+    resizeMode: 'stretch',
   },
   googleLogo: {
     height: 40,
-    width: 55,
-    padding: 5,
-    flex: 1,
-    resizeMode: 'contain',
+    width: 45,
+    resizeMode: 'stretch',
   },
   orContainer: {
     flexDirection: 'row',
+    marginBottom: 10,
+    marginTop: 10,
   },
 });
