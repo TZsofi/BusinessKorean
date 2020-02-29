@@ -40,7 +40,7 @@ export default class login extends React.Component<loginScreenProps, any> {
           colors={[RED, DARKRED, PURPLE, DARKPUPRPLE, DARKBLUE]}
           style={styles.linearGradient}>
           <View style={styles.container}>
-            <Text style={styles.title}>Business Korean</Text>
+            <Text style={styles.title}>BUSINESS KOREAN</Text>
             <TouchableOpacity
               style={styles.logosAndTextContainer}
               onPress={this.onPressFacebookButton}>
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   title: {
-    fontFamily: 'god_bless_america',
+    fontFamily: 'Giraffey',
     color: HONEYDEW,
     fontSize: 70,
     marginBottom: 120,
