@@ -7,6 +7,9 @@ export interface ILoginMappedProps {
 
 export interface ILoginDispatchedProps {
   //modifyLoggedInRequest: (loggedIn: boolean, navigation: NavigationScreenProp<any, any>) => void
+  navigateToFbGoogleLogin: (navigation: NavigationScreenProp<any, any>) => void;
+  navigateToSignIn: (navigation: NavigationScreenProp<any, any>) => void;
+  navigateToSignUp: (navigation: NavigationScreenProp<any, any>) => void;
 }
 
 export type ILoginProps = ILoginMappedProps & ILoginDispatchedProps;

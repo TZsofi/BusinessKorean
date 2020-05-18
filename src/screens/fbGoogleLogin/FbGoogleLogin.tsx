@@ -11,11 +11,12 @@ import {
 import {images} from '../../constants/images';
 import {IFbGoogleLoginProps} from './interface';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {screenKeys} from '../../constants/screenKeys';
 
-export interface ILoginNavigationProps {
+export interface IFbGoogleLoginNavigationProps {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
 }
-type fbGoogleLoginProps = ILoginNavigationProps & IFbGoogleLoginProps;
+type fbGoogleLoginProps = IFbGoogleLoginNavigationProps & IFbGoogleLoginProps;
 
 export default class FBGoogleLogin extends React.Component<
   fbGoogleLoginProps,
@@ -61,6 +62,11 @@ export default class FBGoogleLogin extends React.Component<
               <Image source={googleLogo} style={styles.googleLogo} />
               <Text style={styles.loginText}> Login with Google </Text>
             </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.otherContainer}
+              onPress={this.onPressBackButton}>
+              <Text style={styles.otherText}> Back to other options</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.seoulImageContainer}>
             <Image source={seoulOutline} style={styles.seoulImage} />
@@ -69,11 +75,17 @@ export default class FBGoogleLogin extends React.Component<
       </View>
     );
   }
+
   private onPressFacebookButton = () => {
     //TODO
   };
   private onPressLoginButton = () => {
     //TODO
+  };
+  private onPressBackButton = () => {
+    const {navigate} = this.props.navigation;
+
+    navigate(screenKeys.LOGIN);
   };
 }
 const {HONEYDEW} = colorKeys;
@@ -81,6 +93,23 @@ const {HONEYDEW} = colorKeys;
 const styles = StyleSheet.create({
   linearGradient: {
     height: '100%',
+  },
+  otherText: {
+    color: HONEYDEW,
+  },
+  otherContainer: {
+    marginTop: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#00000000',
+    borderRadius: 20,
+    borderWidth: 0.5,
+    borderColor: colorKeys.HONEYDEW,
+    height: 28,
+    padding: 5,
+    paddingLeft: 30,
+    paddingRight: 30,
+    width: '75%',
   },
   seoulImageContainer: {
     flex: 1,
@@ -100,6 +129,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   title: {
+    marginTop: 30,
     fontFamily: 'Giraffey',
     color: HONEYDEW,
     fontSize: 70,

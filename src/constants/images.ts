@@ -4,4 +4,5 @@ export const images = {
   facebookLogo: require('../../res/images/facebooklogo.png'),
   googleLogo: require('../../res/images/googlelogo.png'),
   line: require('../../res/images/line.png'),
+  rightArrow: require('../../res/images/rightArrow.png'),
 };

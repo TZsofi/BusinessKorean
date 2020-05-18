@@ -11,6 +11,9 @@ import {
 import {images} from '../../constants/images';
 import {ILoginProps} from './interface';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {navigateToFbGoogleLogin} from './store/actions/loginAction';
+import {screenKeys} from '../../constants/screenKeys';
+import ButtonWithArrow from '../../components/buttonWithArrow';
 
 export interface ILoginNavigationProps {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
@@ -32,7 +35,7 @@ export default class login extends React.Component<loginProps, any> {
 
   public render() {
     const {DARKBLUE, DARKPUPRPLE, PURPLE, DARKRED, RED} = colorKeys;
-    const {facebookLogo, line, seoulOutline, googleLogo} = images;
+    const {line, seoulOutline} = images;
     return (
       <View style={{flex: 1}}>
         <LinearGradient
@@ -41,25 +44,17 @@ export default class login extends React.Component<loginProps, any> {
           style={styles.linearGradient}>
           <View style={styles.container}>
             <Text style={styles.title}>BUSINESS KOREAN</Text>
-            <TouchableOpacity
-              style={styles.BigTextContainer}
-              onPress={this.onPressSignInButton}>
-              <Text style={styles.loginText}>Sign In </Text>
-            </TouchableOpacity>
+            <ButtonWithArrow text="Sign Up" />
             <View style={styles.orContainer}>
               <Image source={line} style={styles.lineImage} />
               <Text style={styles.orText}>OR</Text>
               <Image source={line} style={styles.lineImage} />
             </View>
+            <ButtonWithArrow text="Sign In" />
             <TouchableOpacity
-              style={styles.BigTextContainer}
-              onPress={this.onPressSignUpButton}>
-              <Text style={styles.loginText}> Sign Up</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.smallText}
+              style={styles.otherContainer}
               onPress={this.onPressOtherOptionsButton}>
-              <Text style={styles.loginText}> Sign Up</Text>
+              <Text style={styles.otherText}> Other sign-in options</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.seoulImageContainer}>
@@ -76,7 +71,9 @@ export default class login extends React.Component<loginProps, any> {
     //TODO
   };
   private onPressOtherOptionsButton = () => {
-    //TODO
+    const {navigate} = this.props.navigation;
+
+    navigate(screenKeys.FBGOOGLELOGIN);
   };
 }
 const {HONEYDEW} = colorKeys;
@@ -90,11 +87,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-end',
   },
-  smallText: {
+  otherContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    tintColor: HONEYDEW,
-    fontSize: 6,
   },
   seoulImage: {
     tintColor: HONEYDEW,
@@ -113,15 +108,16 @@ const styles = StyleSheet.create({
     color: HONEYDEW,
     fontSize: 70,
     marginBottom: 120,
+    marginTop: 20,
   },
   BigTextContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
   },
-  loginText: {
+  otherText: {
     color: HONEYDEW,
-    marginLeft: 8,
+    marginTop: 5,
   },
   orText: {
     color: HONEYDEW,
