@@ -9,15 +9,18 @@ import {
   NavigationScreenProp,
 } from 'react-navigation';
 import {images} from '../../constants/images';
-import {ILoginProps} from './interface';
+import {IFbGoogleLoginProps} from './interface';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 export interface ILoginNavigationProps {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
 }
-type loginProps = ILoginNavigationProps & ILoginProps;
+type fbGoogleLoginProps = ILoginNavigationProps & IFbGoogleLoginProps;
 
-export default class login extends React.Component<loginProps, any> {
+export default class FBGoogleLogin extends React.Component<
+  fbGoogleLoginProps,
+  any
+> {
   private navListener?: NavigationEventSubscription;
 
   // A felső sáv kialakítása
@@ -42,9 +45,10 @@ export default class login extends React.Component<loginProps, any> {
           <View style={styles.container}>
             <Text style={styles.title}>BUSINESS KOREAN</Text>
             <TouchableOpacity
-              style={styles.BigTextContainer}
-              onPress={this.onPressSignInButton}>
-              <Text style={styles.loginText}>Sign In </Text>
+              style={styles.logosAndTextContainer}
+              onPress={this.onPressFacebookButton}>
+              <Image source={facebookLogo} style={styles.facebookLogo} />
+              <Text style={styles.loginText}> Login with Facebook </Text>
             </TouchableOpacity>
             <View style={styles.orContainer}>
               <Image source={line} style={styles.lineImage} />
@@ -52,14 +56,10 @@ export default class login extends React.Component<loginProps, any> {
               <Image source={line} style={styles.lineImage} />
             </View>
             <TouchableOpacity
-              style={styles.BigTextContainer}
-              onPress={this.onPressSignUpButton}>
-              <Text style={styles.loginText}> Sign Up</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.smallText}
-              onPress={this.onPressOtherOptionsButton}>
-              <Text style={styles.loginText}> Sign Up</Text>
+              style={styles.logosAndTextContainer}
+              onPress={this.onPressFacebookButton}>
+              <Image source={googleLogo} style={styles.googleLogo} />
+              <Text style={styles.loginText}> Login with Google </Text>
             </TouchableOpacity>
           </View>
           <View style={styles.seoulImageContainer}>
@@ -69,13 +69,10 @@ export default class login extends React.Component<loginProps, any> {
       </View>
     );
   }
-  private onPressSignInButton = () => {
+  private onPressFacebookButton = () => {
     //TODO
   };
-  private onPressSignUpButton = () => {
-    //TODO
-  };
-  private onPressOtherOptionsButton = () => {
+  private onPressLoginButton = () => {
     //TODO
   };
 }
@@ -89,12 +86,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-end',
-  },
-  smallText: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    tintColor: HONEYDEW,
-    fontSize: 6,
   },
   seoulImage: {
     tintColor: HONEYDEW,
@@ -114,7 +105,7 @@ const styles = StyleSheet.create({
     fontSize: 70,
     marginBottom: 120,
   },
-  BigTextContainer: {
+  logosAndTextContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
@@ -133,6 +124,16 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginLeft: 20,
     marginTop: 10,
+    resizeMode: 'stretch',
+  },
+  facebookLogo: {
+    height: 40,
+    width: 45,
+    resizeMode: 'stretch',
+  },
+  googleLogo: {
+    height: 40,
+    width: 45,
     resizeMode: 'stretch',
   },
   orContainer: {

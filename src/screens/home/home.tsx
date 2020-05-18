@@ -36,30 +36,9 @@ export default class login extends React.Component<homeProps, any> {
       <View style={{flex: 1}}>
         <LinearGradient
           start={{x: 1, y: 0}}
-          colors={[RED, DARKRED, PURPLE, DARKPUPRPLE, DARKBLUE]}
-          style={styles.linearGradient}>
-          <View style={styles.container}>
-            <Text style={styles.title}>BUSINESS KOREAN</Text>
-            <TouchableOpacity
-              style={styles.logosAndTextContainer}
-              onPress={this.onPressFacebookButton}>
-              <Image source={facebookLogo} style={styles.facebookLogo} />
-              <Text style={styles.loginText}> Login with Facebook </Text>
-            </TouchableOpacity>
-            <View style={styles.orContainer}>
-              <Image source={line} style={styles.lineImage} />
-              <Text style={styles.orText}>OR</Text>
-              <Image source={line} style={styles.lineImage} />
-            </View>
-            <TouchableOpacity
-              style={styles.logosAndTextContainer}
-              onPress={this.onPressFacebookButton}>
-              <Image source={googleLogo} style={styles.googleLogo} />
-              <Text style={styles.loginText}> Login with Google </Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.seoulImageContainer}>
-            <Image source={seoulOutline} style={styles.seoulImage} />
+          colors={[RED, DARKRED, PURPLE, DARKPUPRPLE, DARKBLUE]}>
+          <View>
+            <Text>HOME</Text>
           </View>
         </LinearGradient>
       </View>
