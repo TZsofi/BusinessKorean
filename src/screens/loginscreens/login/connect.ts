@@ -2,7 +2,7 @@ import {ILoginDispatchedProps, ILoginMappedProps} from './interface';
 import {bindActionCreators, Dispatch} from 'redux';
 import login from './login';
 import {connect} from 'react-redux';
-import {IApplicationState} from '../../store';
+import {IApplicationState} from '../../../store';
 import {
   navigateToFbGoogleLogin,
   navigateToSignUp,

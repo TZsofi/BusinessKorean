@@ -5,7 +5,7 @@ import {
 import {bindActionCreators, Dispatch} from 'redux';
 import login from './FbGoogleLogin';
 import {connect} from 'react-redux';
-import {IApplicationState} from '../../store';
+import {IApplicationState} from '../../../store';
 
 const mapStateToProps = (
   state: IApplicationState,

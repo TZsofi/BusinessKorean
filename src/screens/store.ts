@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
-import {loginReducer} from './login/store/reducers/loginReducer';
-import {ILoginStore} from './login/store/store';
+import {loginReducer} from './loginscreens/login/store/reducers/loginReducer';
+import {ILoginStore} from './loginscreens/login/store/store';
 import {IHomeStore} from './home/store/store';
 import {homeReducer} from './home/store/reducers/homeReducer';
 

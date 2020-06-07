@@ -1,4 +1,4 @@
-import {loginSaga} from './login/store/saga';
+import {loginSaga} from './loginscreens/login/store/saga';
 import {all} from 'redux-saga/effects';
 
 export function* screensSaga() {
