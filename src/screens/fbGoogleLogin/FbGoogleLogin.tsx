@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     tintColor: HONEYDEW,
     height: 280,
     width: '100%',
-    resizeMode: 'stretch',
+    resizeMode: 'contain',
   },
   container: {
     flex: 1,
@@ -154,17 +154,17 @@ const styles = StyleSheet.create({
     marginRight: 20,
     marginLeft: 20,
     marginTop: 10,
-    resizeMode: 'stretch',
+    resizeMode: 'contain',
   },
   facebookLogo: {
     height: 40,
     width: 45,
-    resizeMode: 'stretch',
+    resizeMode: 'contain',
   },
   googleLogo: {
     height: 40,
     width: 45,
-    resizeMode: 'stretch',
+    resizeMode: 'contain',
   },
   orContainer: {
     flexDirection: 'row',
