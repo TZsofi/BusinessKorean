@@ -2,7 +2,7 @@ import {IFbGoogleLoginStore} from './store/store';
 import {NavigationParams, NavigationScreenProp} from 'react-navigation';
 
 export interface IFbGoogleLoginMappedProps {
-  loginStore: IFbGoogleLoginStore;
+  fbGoogleLoginStore: IFbGoogleLoginStore;
 }
 
 export interface IFbGoogleLoginDispatchedProps {

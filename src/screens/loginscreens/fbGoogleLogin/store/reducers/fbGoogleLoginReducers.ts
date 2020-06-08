@@ -1,10 +1,10 @@
 import {initialFbGoogleLoginStore, IFbGoogleLoginStore} from '../store';
 import {
   IFbGoogleLoginActions,
-  loginActionTypes,
+  fbGoogleLoginActionTypes,
 } from '../actions/fbGoogleLoginActions';
 
-export const loginReducer = (
+export const fbGoogleLoginReducer = (
   state = initialFbGoogleLoginStore,
   action: IFbGoogleLoginActions,
 ): IFbGoogleLoginStore => {

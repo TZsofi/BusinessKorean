@@ -5,6 +5,7 @@ import {colorKeys} from '../constants/colorKeys';
 
 export interface IButtonWithArrowProps {
   text: string;
+  onPress?: () => void;
 }
 
 export default class ButtonWithArrow extends React.Component<
@@ -14,7 +15,7 @@ export default class ButtonWithArrow extends React.Component<
   public render() {
     const {rightArrow} = images;
     return (
-      <TouchableOpacity style={styles.container}>
+      <TouchableOpacity style={styles.container} onPress={this.props.onPress}>
         <View
           style={{flexDirection: 'row', justifyContent: 'flex-start', flex: 1}}>
           <Text style={styles.text}>{this.props.text}</Text>

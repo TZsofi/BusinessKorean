@@ -1,7 +1,7 @@
 export const screenKeys = {
   LOGIN: 'login',
   FBGOOGLELOGIN: 'fbGoogleLogin',
-  LOGINSIGNUP: 'loginSignUp',
-  LOGINSIGNIN: 'loginSignIn',
+  SIGNUP: 'signUp',
+  SIGNIN: 'signIn',
   LOGINSTACK: 'loginStack',
 };

@@ -3,14 +3,14 @@ import {
   IFbGoogleLoginMappedProps,
 } from './interface';
 import {bindActionCreators, Dispatch} from 'redux';
-import login from './FbGoogleLogin';
+import FBGoogleLogin from './FbGoogleLogin';
 import {connect} from 'react-redux';
 import {IApplicationState} from '../../../store';
 
 const mapStateToProps = (
   state: IApplicationState,
 ): IFbGoogleLoginMappedProps => ({
-  loginStore: state.app.screens.login,
+  fbGoogleLoginStore: state.app.screens.fbGoogleLogin,
 });
 
 const mapDispatchToProps = (
@@ -26,4 +26,4 @@ const mapDispatchToProps = (
 export const fbGoogleloginConnected = connect(
   undefined,
   mapDispatchToProps,
-)(login);
+)(FBGoogleLogin);

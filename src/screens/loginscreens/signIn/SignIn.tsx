@@ -9,18 +9,16 @@ import {
   NavigationScreenProp,
 } from 'react-navigation';
 import {images} from '../../../constants/images';
-import {ILoginProps} from './interface';
+import {ISignInProps} from './interface';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {navigateToFbGoogleLogin} from './store/actions/loginAction';
 import {screenKeys} from '../../../constants/screenKeys';
-import ButtonWithArrow from '../../../components/buttonWithArrow';
 
-export interface ILoginNavigationProps {
+export interface ISignInNavigationProps {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
 }
-type loginProps = ILoginNavigationProps & ILoginProps;
+type signInProps = ISignInNavigationProps & ISignInProps;
 
-export default class login extends React.Component<loginProps, any> {
+export default class SignIn extends React.Component<signInProps, any> {
   private navListener?: NavigationEventSubscription;
 
   // A felső sáv kialakítása
@@ -34,8 +32,15 @@ export default class login extends React.Component<loginProps, any> {
   // felső sáv kialakításának vége
 
   public render() {
-    const {DARKBLUE, DARKPUPRPLE, PURPLE, DARKRED, RED} = colorKeys;
-    const {line, seoulOutline} = images;
+    const {
+      DARKBLUE,
+      DARKPUPRPLE,
+      PURPLE,
+      DARKRED,
+      RED,
+      LIGHTPURPLE,
+    } = colorKeys;
+    const {seoulOutline} = images;
     return (
       <View style={{flex: 1}}>
         <LinearGradient
@@ -44,22 +49,7 @@ export default class login extends React.Component<loginProps, any> {
           style={styles.linearGradient}>
           <View style={styles.container}>
             <Text style={styles.title}>BUSINESS KOREAN</Text>
-            <ButtonWithArrow
-              text="Sign In"
-              onPress={this.onPressSignInButton}
-            />
-
-            <View style={styles.orContainer}>
-              <Image source={line} style={styles.lineImage} />
-              <Text style={styles.orText}>OR</Text>
-              <Image source={line} style={styles.lineImage} />
-            </View>
-            <ButtonWithArrow text="Sign Up" />
-            <TouchableOpacity
-              style={styles.otherContainer}
-              onPress={this.onPressOtherOptionsButton}>
-              <Text style={styles.otherText}> Other sign-in options</Text>
-            </TouchableOpacity>
+            <Text>EMAIL</Text>
           </View>
           <View style={styles.seoulImageContainer}>
             <Image source={seoulOutline} style={styles.seoulImage} />
@@ -68,19 +58,6 @@ export default class login extends React.Component<loginProps, any> {
       </View>
     );
   }
-  private onPressSignInButton = () => {
-    const {navigate} = this.props.navigation;
-
-    navigate(screenKeys.SIGNIN);
-  };
-  private onPressSignUpButton = () => {
-    //TODO
-  };
-  private onPressOtherOptionsButton = () => {
-    const {navigate} = this.props.navigation;
-
-    navigate(screenKeys.FBGOOGLELOGIN);
-  };
 }
 const {HONEYDEW} = colorKeys;
 
@@ -88,14 +65,27 @@ const styles = StyleSheet.create({
   linearGradient: {
     height: '100%',
   },
+  otherText: {
+    color: HONEYDEW,
+  },
+  otherContainer: {
+    marginTop: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#00000000',
+    borderRadius: 20,
+    borderWidth: 0.5,
+    borderColor: colorKeys.HONEYDEW,
+    height: 28,
+    padding: 5,
+    paddingLeft: 30,
+    paddingRight: 30,
+    width: '75%',
+  },
   seoulImageContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'flex-end',
-  },
-  otherContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   seoulImage: {
     tintColor: HONEYDEW,
@@ -110,20 +100,20 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   title: {
+    marginTop: 30,
     fontFamily: 'Giraffey',
     color: HONEYDEW,
     fontSize: 70,
     marginBottom: 120,
-    marginTop: 20,
   },
-  BigTextContainer: {
+  logosAndTextContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
   },
-  otherText: {
+  loginText: {
     color: HONEYDEW,
-    marginTop: 5,
+    marginLeft: 8,
   },
   orText: {
     color: HONEYDEW,
@@ -136,6 +126,16 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginTop: 10,
     resizeMode: 'stretch',
+  },
+  facebookLogo: {
+    height: 40,
+    width: 45,
+    resizeMode: 'contain',
+  },
+  googleLogo: {
+    height: 40,
+    width: 45,
+    resizeMode: 'contain',
   },
   orContainer: {
     flexDirection: 'row',
