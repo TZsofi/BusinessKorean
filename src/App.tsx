@@ -12,7 +12,8 @@ const AppContainer = createAppContainer(rootSwitch);
 const {store} = configureStore();
 
 export default class App extends React.Component {
-  componentWillMount() {
+  constructor(props: any) {
+    super(props);
     firebase.initializeApp({
       apiKey: 'AIzaSyDhr5bpz1DMQOiFuYv2hvXjDOvTA5rJzjE',
       authDomain: 'business-korean-fe1d8.firebaseapp.com',

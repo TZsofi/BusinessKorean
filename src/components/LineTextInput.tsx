@@ -1,11 +1,11 @@
 import React from 'react';
-import {View, StyleSheet, Text, Image, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, Text, Image, TextInput} from 'react-native';
 import {images} from '../constants/images';
 import {colorKeys} from '../constants/colorKeys';
 
 export interface ILineTextInputProps {
   title: string;
-  value?: string;
+  value: string;
   placeholder?: string;
   errorText?: string;
   onChangeValue?: (value: string) => void;
@@ -16,44 +16,22 @@ export default class LineTextInput extends React.Component<
   any
 > {
   public render() {
-    const {title, errorText} = this.props;
+    const {title, value, placeholder, onChangeValue} = this.props;
+    const {line} = images;
 
     return (
       <View style={styles.container}>
         <Text style={styles.title}>{title}</Text>
+        <TextInput
+          style={styles.input}
+          value={value}
+          placeholder={placeholder}
+          onChangeText={onChangeValue}
+        />
+        <Image source={line} style={styles.lineImage} />
       </View>
     );
   }
-  /*
-  public renderInput = () => {
-    const {data, placeholder, onChangeText, onPress} = this.props;
-
-    if (onPress !== undefined) {
-      return (
-        <TouchableOpacity onPress={onPress} style={{flex: 1}}>
-          {/* a pointerEvent=none megakadályozza, hogy bele lehessen kattintani az Inputba.
-               Az Androidon ezt Viewba kell tenni}
-          <View pointerEvents="none">
-            <TextInput
-              style={styles.input}
-              value={data}
-              placeholder={placeholder}
-              onChangeText={onChangeText}
-            />
-          </View>
-        </TouchableOpacity>
-      );
-    } else {
-      return (
-        <TextInput
-          style={styles.input}
-          value={data}
-          placeholder={placeholder}
-          onChangeText={onChangeText}
-        />
-      );
-    }
-  };*/
 }
 
 const styles = StyleSheet.create({
@@ -67,6 +45,7 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     marginTop: 5,
     color: colorKeys.LIGHTPURPLE,
+    fontWeight: 'bold',
     fontSize: 18,
   },
   input: {
@@ -85,7 +64,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '70%',
-    margin: 5,
+    margin: 15,
   },
   text: {
     color: colorKeys.LIGHTPURPLE,
