@@ -4,10 +4,10 @@ import {images} from '../constants/images';
 import {colorKeys} from '../constants/colorKeys';
 
 export interface ILineTextInputProps {
-  title: string;
   value: string;
-  placeholder?: string;
+  placeholder: string;
   errorText?: string;
+  secureTyping?: boolean;
   onChangeValue?: (value: string) => void;
 }
 
@@ -16,16 +16,16 @@ export default class LineTextInput extends React.Component<
   any
 > {
   public render() {
-    const {title, value, placeholder, onChangeValue} = this.props;
+    const {value, placeholder, onChangeValue, secureTyping} = this.props;
     const {line} = images;
 
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>{title}</Text>
         <TextInput
           style={styles.input}
           value={value}
           placeholder={placeholder}
+          secureTextEntry={secureTyping}
           onChangeText={onChangeValue}
         />
         <Image source={line} style={styles.lineImage} />
@@ -36,21 +36,16 @@ export default class LineTextInput extends React.Component<
 
 const styles = StyleSheet.create({
   lineImage: {
-    tintColor: colorKeys.HONEYDEW,
+    tintColor: colorKeys.SIGNINBLUE,
     height: 10,
     width: '100%',
     resizeMode: 'stretch',
   },
-  title: {
-    marginLeft: 15,
-    marginTop: 5,
-    color: colorKeys.LIGHTPURPLE,
-    fontWeight: 'bold',
-    fontSize: 18,
-  },
+
   input: {
-    borderColor: '#f2f2f2',
-    borderWidth: 1,
+    color: colorKeys.SIGNINBLUE,
+    borderWidth: 0,
+    alignSelf: 'flex-start',
   },
   errorText: {
     marginLeft: 15,
@@ -65,18 +60,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '70%',
     margin: 15,
-  },
-  text: {
-    color: colorKeys.LIGHTPURPLE,
-    fontSize: 20,
-    paddingLeft: 20,
-    fontWeight: '600',
-  },
-  icon: {
-    tintColor: colorKeys.HONEYDEW,
-    width: 15,
-    height: 30,
-    resizeMode: 'contain',
-    paddingRight: 60,
   },
 });

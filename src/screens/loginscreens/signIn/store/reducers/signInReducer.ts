@@ -1,6 +1,7 @@
 import {initialSignInStore, ISignInStore} from '../store';
 import {signInActionTypes} from '../actions/signInAction';
 import {ISignInActions} from '../actions/signInActionInterface';
+import {updateSignInVisible} from '../../../login/store/actions/loginAction';
 
 export const signInReducer = (
   state = initialSignInStore,
@@ -17,6 +18,7 @@ export const signInReducer = (
         ...state,
         password: action.password,
       };
+
     default:
       return state;
   }

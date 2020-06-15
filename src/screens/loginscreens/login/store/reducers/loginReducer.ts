@@ -11,6 +11,16 @@ export const loginReducer = (
       return {
         ...state,
       };
+    case loginActionTypes.UPDATE_SIGN_IN_VISIBLE:
+      return {
+        ...state,
+        signInVisible: action.visible,
+      };
+    case loginActionTypes.UPDATE_SIGN_UP_VISIBLE:
+      return {
+        ...state,
+        signUpVisible: action.visible,
+      };
     default:
       return state;
   }

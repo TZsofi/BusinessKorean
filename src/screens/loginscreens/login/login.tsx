@@ -14,6 +14,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {navigateToFbGoogleLogin} from './store/actions/loginAction';
 import {screenKeys} from '../../../constants/screenKeys';
 import ButtonWithArrow from '../../../components/buttonWithArrow';
+import SignUp from '../signUpModal/SignUp';
 
 export interface ILoginNavigationProps {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
@@ -54,7 +55,10 @@ export default class login extends React.Component<loginProps, any> {
               <Text style={styles.orText}>OR</Text>
               <Image source={line} style={styles.lineImage} />
             </View>
-            <ButtonWithArrow text="Sign Up" />
+            <ButtonWithArrow
+              text="Sign Up"
+              onPress={this.onPressSignUpButton}
+            />
             <TouchableOpacity
               style={styles.otherContainer}
               onPress={this.onPressOtherOptionsButton}>
@@ -74,7 +78,9 @@ export default class login extends React.Component<loginProps, any> {
     navigate(screenKeys.SIGNIN);
   };
   private onPressSignUpButton = () => {
-    //TODO
+    const {navigate} = this.props.navigation;
+
+    navigate(screenKeys.SIGNUP);
   };
   private onPressOtherOptionsButton = () => {
     const {navigate} = this.props.navigation;

@@ -6,4 +6,5 @@ export const colorKeys = {
   RED: '#851e3e',
   HONEYDEW: '#F0FFF0',
   LIGHTPURPLE: '#fed4ff',
+  SIGNINBLUE: '#9795EF',
 };

@@ -6,16 +6,20 @@ import {
   IFbGoogleLoginStore,
   initialFbGoogleLoginStore,
 } from './loginscreens/fbGoogleLogin/store/store';
-import {signInReducer} from './loginscreens/signIn/store/reducers/signInReducer';
-import {ISignInStore} from './loginscreens/signIn/store/store';
+
 import {IHomeStore} from './home/store/store';
 import {homeReducer} from './home/store/reducers/homeReducer';
+import {signUpReducer} from './loginscreens/signUpModal/store/reducers/signUpReducer';
+import {ISignUpStore} from './loginscreens/signUpModal/store/store';
+import {signInReducer} from './loginscreens/signIn/store/reducers/signInReducer';
+import {ISignInStore} from './loginscreens/signIn/store/store';
 
 export interface IScreensStore {
   login: ILoginStore;
   home: IHomeStore;
   fbGoogleLogin: IFbGoogleLoginStore;
   signIn: ISignInStore;
+  signUp: ISignUpStore;
 }
 
 export const screensReducer = combineReducers<IScreensStore>({
@@ -23,4 +27,5 @@ export const screensReducer = combineReducers<IScreensStore>({
   home: homeReducer,
   fbGoogleLogin: fbGoogleLoginReducer,
   signIn: signInReducer,
+  signUp: signUpReducer,
 });
