@@ -15,7 +15,7 @@ function* registerUserWatcher(action: IRegisterUserAction) {
   console.log('saga');
   //checking if fields aren't empty
   if (
-    action.registerParams.email === '' &&
+    action.registerParams.email === '' ||
     action.registerParams.password === ''
   ) {
     Alert.alert('Please enter your email, and password into the fields');
@@ -27,6 +27,8 @@ function* registerUserWatcher(action: IRegisterUserAction) {
     Alert.alert("Passwords don't match");
   } else {
     console.log('saga else');
+    console.log(action.registerParams.email);
+    console.log(action.registerParams.password);
     try {
       firebase
         .auth()
@@ -34,9 +36,9 @@ function* registerUserWatcher(action: IRegisterUserAction) {
           action.registerParams.email,
           action.registerParams.password,
         )
-        .then(res => Alert.alert('Sikerült regisztralni'))
+        .then(res => console.log('Sikerült regisztralni'))
 
-        .catch(error => Alert.alert('Hiba'));
+        .catch(error => Alert.alert(error));
     } finally {
       console.log('vege');
     }

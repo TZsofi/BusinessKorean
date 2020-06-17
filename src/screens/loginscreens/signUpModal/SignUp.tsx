@@ -22,6 +22,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {screenKeys} from '../../../constants/screenKeys';
 import LineTextInput from '../../../components/LineTextInput';
 import Modal from 'react-native-modal';
+import {icons} from '../../../constants/icons';
 
 export interface ISignUpNavigationProps {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
@@ -64,7 +65,28 @@ export default class SignUp extends React.Component<signUpProps, any> {
                 useAngle={true}
                 angle={110}
                 style={styles.headerGradient}>
-                <Text style={styles.title}>Sign Up</Text>
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: 'flex-start',
+                    alignItems: 'flex-start',
+                  }}>
+                  <Text style={styles.title}>Sign Up</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: 'flex-start',
+                    alignItems: 'flex-end',
+                    marginBottom: 40,
+                    marginRight: 20,
+                  }}>
+                  <Image
+                    style={styles.closeIcon}
+                    resizeMode="contain"
+                    source={icons.close}
+                  />
+                </View>
               </LinearGradient>
               <ScrollView contentContainerStyle={{justifyContent: 'center'}}>
                 <LineTextInput
@@ -167,8 +189,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 80,
     marginBottom: 70,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    flexDirection: 'row',
+
     borderTopRightRadius: 10,
     borderTopLeftRadius: 10,
   },
@@ -180,5 +202,11 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     marginTop: 100,
     borderRadius: 15,
+  },
+  closeIcon: {
+    flex: 1,
+    height: '10%',
+    width: '10%',
+    tintColor: colorKeys.HONEYDEW,
   },
 });
