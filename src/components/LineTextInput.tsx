@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
 
   input: {
     color: colorKeys.SIGNINBLUE,
+    width: '90%',
     borderWidth: 0,
     alignSelf: 'flex-start',
   },
