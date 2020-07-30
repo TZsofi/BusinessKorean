@@ -1,15 +1,19 @@
 export interface ILoginStore {
   loggedIn: boolean;
-  isRequesting: boolean;
-  error: string | null;
+  loading: boolean;
   signUpVisible: boolean;
   signInVisible: boolean;
+  email: string;
+  password: string;
+  passwordAgain: string;
 }
 
 export const initialLoginStore: ILoginStore = {
   loggedIn: false,
-  isRequesting: false,
-  error: null,
+  loading: false,
   signInVisible: false,
   signUpVisible: false,
+  email: '',
+  password: '',
+  passwordAgain: '',
 };

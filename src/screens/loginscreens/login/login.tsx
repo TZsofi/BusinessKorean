@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, StatusBar, Image, Text} from 'react-native';
+import {View, StyleSheet, StatusBar, Image, Text, Alert} from 'react-native';
 import {colorKeys} from '../../../constants/colorKeys';
 import LinearGradient from 'react-native-linear-gradient';
 import {
@@ -11,17 +11,30 @@ import {
 import {images} from '../../../constants/images';
 import {ILoginProps} from './interface';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {navigateToFbGoogleLogin} from './store/actions/loginAction';
 import {screenKeys} from '../../../constants/screenKeys';
 import ButtonWithArrow from '../../../components/buttonWithArrow';
-import SignUp from '../signUpModal/SignUp';
+import LoginModal from './childcomponents/LoginModal';
 
 export interface ILoginNavigationProps {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
 }
-type loginProps = ILoginNavigationProps & ILoginProps;
 
-export default class login extends React.Component<loginProps, any> {
+export interface ILoginStates {
+  signUpModalVisible: boolean;
+  signInModalVisible: boolean;
+}
+
+type loginProps = ILoginNavigationProps & ILoginProps;
+type loginStates = ILoginStates;
+
+export default class login extends React.Component<loginProps, loginStates> {
+  constructor(props: loginProps) {
+    super(props);
+    this.state = {
+      signUpModalVisible: false,
+      signInModalVisible: false,
+    };
+  }
   private navListener?: NavigationEventSubscription;
 
   // A felső sáv kialakítása
@@ -37,6 +50,24 @@ export default class login extends React.Component<loginProps, any> {
   public render() {
     const {DARKBLUE, DARKPUPRPLE, PURPLE, DARKRED, RED} = colorKeys;
     const {line, seoulOutline} = images;
+    const {
+      updateEmail,
+      updatePassword,
+      updatePasswordAgain,
+      hideSignInModal,
+      hideSignUpModal,
+      loginUser,
+      registerUser,
+    } = this.props;
+    const {
+      email,
+      password,
+      passwordAgain,
+      signInVisible,
+      signUpVisible,
+    } = this.props.loginStore;
+
+    //console.log(this.props.loginStore.signInVisible);
     return (
       <View style={{flex: 1}}>
         <LinearGradient
@@ -69,18 +100,42 @@ export default class login extends React.Component<loginProps, any> {
             <Image source={seoulOutline} style={styles.seoulImage} />
           </View>
         </LinearGradient>
+        {/*TODO:Megkerdezni erröl örsöt!!*/}
+        <LoginModal
+          isVisible={signInVisible}
+          email={email}
+          password={password}
+          passwordAgain={passwordAgain}
+          updateEmail={updateEmail}
+          updatePassword={updatePassword}
+          updatePasswordAgain={updatePasswordAgain}
+          registerUser={registerUser}
+          hideModal={hideSignInModal}
+          loginUser={loginUser}
+          isSignUp={false}
+        />
+        <LoginModal
+          isVisible={signUpVisible}
+          email={email}
+          password={password}
+          passwordAgain={passwordAgain}
+          updateEmail={updateEmail}
+          updatePassword={updatePassword}
+          updatePasswordAgain={updatePasswordAgain}
+          registerUser={registerUser}
+          hideModal={hideSignUpModal}
+          loginUser={loginUser}
+          isSignUp={true}
+        />
       </View>
     );
   }
   private onPressSignInButton = () => {
-    const {navigate} = this.props.navigation;
-
-    navigate(screenKeys.SIGNIN);
+    this.props.showSignInModal();
   };
-  private onPressSignUpButton = () => {
-    const {navigate} = this.props.navigation;
 
-    navigate(screenKeys.SIGNUP);
+  private onPressSignUpButton = () => {
+    this.props.showSignUpModal();
   };
   private onPressOtherOptionsButton = () => {
     const {navigate} = this.props.navigation;

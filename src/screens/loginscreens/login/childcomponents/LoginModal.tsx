@@ -2,49 +2,37 @@ import React from 'react';
 import {
   View,
   StyleSheet,
-  StatusBar,
   Image,
   Text,
   ScrollView,
-  Button,
+  TouchableOpacity,
 } from 'react-native';
-import {colorKeys} from '../../../constants/colorKeys';
+import {colorKeys} from '../../../../constants/colorKeys';
 import LinearGradient from 'react-native-linear-gradient';
-import {
-  NavigationEventSubscription,
-  NavigationState,
-  NavigationParams,
-  NavigationScreenProp,
-} from 'react-navigation';
-import {images} from '../../../constants/images';
-import {ISignUpProps} from '../signUpModal/interface';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {screenKeys} from '../../../constants/screenKeys';
-import LineTextInput from '../../../components/LineTextInput';
+import LineTextInput from '../../../../components/LineTextInput';
 import Modal from 'react-native-modal';
-import {icons} from '../../../constants/icons';
+import {icons} from '../../../../constants/icons';
+import {
+  IRegisterParams,
+  ILoginParams,
+} from '../store/actions/loginActionInterface';
 
-export interface ISignUpNavigationProps {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+export interface IModalProps {
+  isVisible: boolean;
+  email: string;
+  password: string;
+  passwordAgain: string;
+  updateEmail: (email: string) => void;
+  updatePassword: (password: string) => void;
+  updatePasswordAgain: (password: string) => void;
+  registerUser: (registerParams: IRegisterParams) => void;
+  hideModal: () => void;
+  loginUser: (loginParams: ILoginParams) => void;
+  isSignUp: boolean;
 }
-export interface IExtraProps {
-  visible: boolean;
-}
-type signUpProps = ISignUpNavigationProps & ISignUpProps & IExtraProps;
+export type modalProps = IModalProps;
 
-export default class SignUp extends React.Component<signUpProps, any> {
-  private navListener?: NavigationEventSubscription;
-
-  // A felső sáv kialakítása
-  public componentDidMount() {
-    this.navListener = this.props.navigation.addListener('didFocus', () => {
-      StatusBar.setBarStyle('light-content');
-      StatusBar.setBackgroundColor(colorKeys.RED);
-      StatusBar.setTranslucent(false);
-    });
-  }
-  // felső sáv kialakításának vége
-
+export default class LoginModal extends React.Component<modalProps, any> {
   public render() {
     const {
       DARKBLUE,
@@ -54,10 +42,10 @@ export default class SignUp extends React.Component<signUpProps, any> {
       RED,
       LIGHTPURPLE,
     } = colorKeys;
-    const {modalVisible} = this.props;
+    const {isVisible, email, password, passwordAgain} = this.props;
     return (
       <View style={styles.modalContainer}>
-        <Modal isVisible={this.props.modalVisible}>
+        <Modal isVisible={isVisible}>
           <View style={styles.modalContainer}>
             <View style={styles.modal}>
               <LinearGradient
@@ -71,41 +59,37 @@ export default class SignUp extends React.Component<signUpProps, any> {
                     justifyContent: 'flex-start',
                     alignItems: 'flex-start',
                   }}>
-                  <Text style={styles.title}>Sign Up</Text>
+                  <Text style={styles.title}>{this.getTitleText()}</Text>
                 </View>
-                <View
+                <TouchableOpacity
                   style={{
                     flex: 1,
                     justifyContent: 'flex-start',
                     alignItems: 'flex-end',
                     marginBottom: 40,
                     marginRight: 20,
-                  }}>
+                  }}
+                  onPress={this.close}>
                   <Image
                     style={styles.closeIcon}
                     resizeMode="contain"
                     source={icons.close}
                   />
-                </View>
+                </TouchableOpacity>
               </LinearGradient>
               <ScrollView contentContainerStyle={{justifyContent: 'center'}}>
                 <LineTextInput
-                  value={this.props.signUpStore.email}
+                  value={email}
                   placeholder="EMAIL"
                   onChangeValue={this.onChangeEmail}
                 />
                 <LineTextInput
                   placeholder="PASSWORD"
                   secureTyping={true}
-                  value={this.props.signUpStore.password}
+                  value={password}
                   onChangeValue={this.onChangePassword}
                 />
-                <LineTextInput
-                  placeholder="PASSWORD AGAIN"
-                  secureTyping={true}
-                  value={this.props.signUpStore.passwordAgain}
-                  onChangeValue={this.onChangePasswordAgain}
-                />
+                {this.renderPasswordAgainInputField()}
 
                 <TouchableOpacity
                   style={styles.buttonContainer}
@@ -118,7 +102,6 @@ export default class SignUp extends React.Component<signUpProps, any> {
                     <Text style={{color: colorKeys.HONEYDEW}}>Submit</Text>
                   </LinearGradient>
                 </TouchableOpacity>
-                <Button title="Test" onPress={this.onPressSubmitButton} />
               </ScrollView>
             </View>
           </View>
@@ -126,6 +109,11 @@ export default class SignUp extends React.Component<signUpProps, any> {
       </View>
     );
   }
+  private close = () => {
+    //ez eleg lassu :(
+    console.log('megnyomta');
+    this.props.hideModal();
+  };
   private onChangeEmail = (value: string) => {
     this.props.updateEmail(value);
   };
@@ -137,11 +125,38 @@ export default class SignUp extends React.Component<signUpProps, any> {
   };
   private onPressSubmitButton = () => {
     console.log('megnyomtam a submit buttont');
-    this.props.registerUser({
-      email: this.props.signUpStore.email,
-      password: this.props.signUpStore.password,
-      passwordAgain: this.props.signUpStore.passwordAgain,
-    });
+    console.log(this.props.email);
+    if (this.props.isSignUp) {
+      this.props.registerUser({
+        email: this.props.email,
+        password: this.props.password,
+        passwordAgain: this.props.passwordAgain,
+      });
+    } else {
+      this.props.loginUser({
+        email: this.props.email,
+        password: this.props.password,
+      });
+    }
+  };
+  private renderPasswordAgainInputField = () => {
+    if (this.props.isSignUp) {
+      return (
+        <LineTextInput
+          placeholder="PASSWORD AGAIN"
+          secureTyping={true}
+          value={this.props.passwordAgain}
+          onChangeValue={this.onChangePasswordAgain}
+        />
+      );
+    }
+  };
+  private getTitleText = () => {
+    if (this.props.isSignUp) {
+      return 'Sign Up';
+    } else {
+      return 'Sign In';
+    }
   };
 }
 const {DARKPUPRPLE, HONEYDEW} = colorKeys;

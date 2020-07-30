@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "747624942993",
+    "firebase_url": "https://business-korean-fe1d8.firebaseio.com",
+    "project_id": "business-korean-fe1d8",
+    "storage_bucket": "business-korean-fe1d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747624942993:android:3a306141c06aed9caa1e30",
+        "android_client_info": {
+          "package_name": "com.businesskorean"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747624942993-6fkq5g97t2rkptg70g4ja2cma9u55use.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_VxtiNCwa0XMI47S5BmhJkYnQRvEkPmA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "747624942993-6fkq5g97t2rkptg70g4ja2cma9u55use.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

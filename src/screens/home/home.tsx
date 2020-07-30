@@ -44,10 +44,4 @@ export default class login extends React.Component<homeProps, any> {
       </View>
     );
   }
-  private onPressFacebookButton = () => {
-    //TODO
-  };
-  private onPressLoginButton = () => {
-    //TODO
-  };
 }

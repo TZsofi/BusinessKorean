@@ -2,18 +2,31 @@ import {NavigationParams} from 'react-navigation';
 import {
   ILoginActionTypes,
   INavigateToFbGoogleAction,
-  INavigateToSignUpAction,
-  IUpdateSignInVisibleAction,
-  IUpdateSignUpVisibleAction,
-  INavigateToSignInAction,
+  IShowSignInModalAction,
+  IShowSignUpModalAction,
+  IHideSignInModalAction,
+  IHideSignUpModalAction,
+  IUpdateEmailAction,
+  IUpdatePasswordAction,
+  IUpdatePasswordAgainAction,
+  IRegisterParams,
+  IRegisterUserAction,
+  ILoginParams,
+  ILoginUserAction,
 } from './loginActionInterface';
 
 export const loginActionTypes: ILoginActionTypes = {
   NAVIGATE_TO_FB_GOOGLE_LOGIN: 'NAVIGATE_TO_FB_GOOGLE_LOGIN',
-  NAVIGATE_TO_SIGN_UP: 'NAVIGATE_TO_SIGN_UP',
-  NAVIGATE_TO_SIGN_IN: 'NAVIGATE_TO_SIGN_IN',
-  UPDATE_SIGN_UP_VISIBLE: 'UPDATE_SIGN_UP_VISIBLE',
-  UPDATE_SIGN_IN_VISIBLE: 'UPDATE_SIGN_IN_VISIBLE',
+
+  SHOW_SIGN_IN_MODAL: 'SHOW_SIGN_IN_MODAL',
+  SHOW_SIGN_UP_MODAL: 'SHOW_SIGN_UP_MODAL',
+  HIDE_SIGN_IN_MODAL: 'HIDE_SIGN_IN_MODAL',
+  HIDE_SIGN_UP_MODAL: 'HIDE_SIGN_UP_MODAL',
+  UPDATE_EMAIL: 'UPDATE_EMAIL',
+  UPDATE_PASSWORD: 'UPDATE_PASSWORD',
+  UPDATE_PASSWORD_AGAIN: 'UPDATE_PASSWORD_AGAIN',
+  REGISTER_USER: 'REGISTER_USER',
+  LOGIN_USER: 'LOGIN_USER',
 };
 
 export const navigateToFbGoogleLogin = (
@@ -23,30 +36,46 @@ export const navigateToFbGoogleLogin = (
   navigation,
 });
 
-export const navigateToSignUp = (
-  navigation: NavigationParams,
-): INavigateToSignUpAction => ({
-  type: loginActionTypes.NAVIGATE_TO_SIGN_UP,
-  navigation,
+export const showSignInModal = (): IShowSignInModalAction => ({
+  type: loginActionTypes.SHOW_SIGN_IN_MODAL,
 });
 
-export const navigateToSignIn = (
-  navigation: NavigationParams,
-): INavigateToSignInAction => ({
-  type: loginActionTypes.NAVIGATE_TO_SIGN_IN,
-  navigation,
+export const showSignUpModal = (): IShowSignUpModalAction => ({
+  type: loginActionTypes.SHOW_SIGN_UP_MODAL,
 });
 
-export const updateSignUpVisible = (
-  visible: boolean,
-): IUpdateSignUpVisibleAction => ({
-  type: loginActionTypes.UPDATE_SIGN_UP_VISIBLE,
-  visible,
+export const hideSignInModal = (): IHideSignInModalAction => ({
+  type: loginActionTypes.HIDE_SIGN_IN_MODAL,
 });
 
-export const updateSignInVisible = (
-  visible: boolean,
-): IUpdateSignInVisibleAction => ({
-  type: loginActionTypes.UPDATE_SIGN_IN_VISIBLE,
-  visible,
+export const hideSignUpModal = (): IHideSignUpModalAction => ({
+  type: loginActionTypes.HIDE_SIGN_UP_MODAL,
+});
+export const updateEmail = (email: string): IUpdateEmailAction => ({
+  type: loginActionTypes.UPDATE_EMAIL,
+  email,
+});
+
+export const updatePassword = (password: string): IUpdatePasswordAction => ({
+  type: loginActionTypes.UPDATE_PASSWORD,
+  password,
+});
+
+export const updatePasswordAgain = (
+  password: string,
+): IUpdatePasswordAgainAction => ({
+  type: loginActionTypes.UPDATE_PASSWORD_AGAIN,
+  password,
+});
+
+export const registerUser = (
+  registerParams: IRegisterParams,
+): IRegisterUserAction => ({
+  type: loginActionTypes.REGISTER_USER,
+  registerParams,
+});
+
+export const loginUser = (loginParams: ILoginParams): ILoginUserAction => ({
+  type: loginActionTypes.LOGIN_USER,
+  loginParams,
 });

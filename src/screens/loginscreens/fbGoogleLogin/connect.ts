@@ -24,6 +24,6 @@ const mapDispatchToProps = (
   );
 
 export const fbGoogleloginConnected = connect(
-  undefined,
+  mapStateToProps,
   mapDispatchToProps,
 )(FBGoogleLogin);

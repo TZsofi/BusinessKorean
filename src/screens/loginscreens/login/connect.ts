@@ -5,8 +5,15 @@ import {connect} from 'react-redux';
 import {IApplicationState} from '../../../store';
 import {
   navigateToFbGoogleLogin,
-  navigateToSignUp,
-  navigateToSignIn,
+  updateEmail,
+  updatePassword,
+  updatePasswordAgain,
+  registerUser,
+  showSignInModal,
+  showSignUpModal,
+  hideSignInModal,
+  hideSignUpModal,
+  loginUser,
 } from './store/actions/loginAction';
 
 const mapStateToProps = (state: IApplicationState): ILoginMappedProps => ({
@@ -17,13 +24,20 @@ const mapDispatchToProps = (dispatch: Dispatch): ILoginDispatchedProps =>
   bindActionCreators(
     {
       navigateToFbGoogleLogin,
-      navigateToSignUp,
-      navigateToSignIn,
+      updateEmail,
+      updatePassword,
+      updatePasswordAgain,
+      registerUser,
+      showSignInModal,
+      showSignUpModal,
+      hideSignInModal,
+      hideSignUpModal,
+      loginUser,
     },
     dispatch,
   );
 
 export const loginConnected = connect(
-  undefined,
+  mapStateToProps,
   mapDispatchToProps,
 )(login);
