@@ -75,7 +75,11 @@ export const registerUser = (
   registerParams,
 });
 
-export const loginUser = (loginParams: ILoginParams): ILoginUserAction => ({
+export const loginUser = (
+  loginParams: ILoginParams,
+  navigation: NavigationParams,
+): ILoginUserAction => ({
   type: loginActionTypes.LOGIN_USER,
   loginParams,
+  navigation,
 });

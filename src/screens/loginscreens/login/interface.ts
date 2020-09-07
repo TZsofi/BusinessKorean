@@ -1,5 +1,5 @@
 import {ILoginStore} from './store/store';
-import {NavigationScreenProp} from 'react-navigation';
+import {NavigationScreenProp, NavigationParams} from 'react-navigation';
 import {
   IRegisterParams,
   ILoginParams,
@@ -16,7 +16,7 @@ export interface ILoginDispatchedProps {
   updatePassword: (password: string) => void;
   updatePasswordAgain: (password: string) => void;
   registerUser: (registerParams: IRegisterParams) => void;
-  loginUser: (loginParams: ILoginParams) => void;
+  loginUser: (loginParams: ILoginParams, navigation: NavigationParams) => void;
   showSignInModal: () => void;
   showSignUpModal: () => void;
   hideSignInModal: () => void;

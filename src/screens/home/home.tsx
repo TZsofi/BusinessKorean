@@ -12,35 +12,12 @@ import {images} from '../../constants/images';
 import {IHomeProps} from './interface';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
-export interface IHomeNavigationProps {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
-}
-type homeProps = IHomeNavigationProps & IHomeProps;
-
-export default class login extends React.Component<homeProps, any> {
-  private navListener?: NavigationEventSubscription;
-
-  // A felső sáv kialakítása
-  public componentDidMount() {
-    this.navListener = this.props.navigation.addListener('didFocus', () => {
-      StatusBar.setBarStyle('light-content');
-      StatusBar.setBackgroundColor(colorKeys.RED);
-      StatusBar.setTranslucent(false);
-    });
-  }
-  // felső sáv kialakításának vége
-
+export default class Home extends React.Component {
   public render() {
     const {DARKBLUE, DARKPUPRPLE, PURPLE, DARKRED, RED} = colorKeys;
     return (
       <View style={{flex: 1}}>
-        <LinearGradient
-          start={{x: 1, y: 0}}
-          colors={[RED, DARKRED, PURPLE, DARKPUPRPLE, DARKBLUE]}>
-          <View>
-            <Text>HOME</Text>
-          </View>
-        </LinearGradient>
+        <Text>HOME</Text>
       </View>
     );
   }

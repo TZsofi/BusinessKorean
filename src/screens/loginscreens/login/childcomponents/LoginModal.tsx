@@ -16,6 +16,11 @@ import {
   IRegisterParams,
   ILoginParams,
 } from '../store/actions/loginActionInterface';
+import {
+  NavigationParams,
+  NavigationScreenProp,
+  NavigationState,
+} from 'react-navigation';
 
 export interface IModalProps {
   isVisible: boolean;
@@ -27,10 +32,14 @@ export interface IModalProps {
   updatePasswordAgain: (password: string) => void;
   registerUser: (registerParams: IRegisterParams) => void;
   hideModal: () => void;
-  loginUser: (loginParams: ILoginParams) => void;
+  loginUser: (loginParams: ILoginParams, navigation: NavigationParams) => void;
   isSignUp: boolean;
 }
-export type modalProps = IModalProps;
+
+export interface IModalNavigationProps {
+  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+}
+export type modalProps = IModalProps & IModalNavigationProps;
 
 export default class LoginModal extends React.Component<modalProps, any> {
   public render() {
@@ -133,10 +142,13 @@ export default class LoginModal extends React.Component<modalProps, any> {
         passwordAgain: this.props.passwordAgain,
       });
     } else {
-      this.props.loginUser({
-        email: this.props.email,
-        password: this.props.password,
-      });
+      this.props.loginUser(
+        {
+          email: this.props.email,
+          password: this.props.password,
+        },
+        {navigation: this.props.navigation},
+      );
     }
   };
   private renderPasswordAgainInputField = () => {

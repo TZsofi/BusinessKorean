@@ -1,6 +1,6 @@
 import {ILoginDispatchedProps, ILoginMappedProps} from './interface';
 import {bindActionCreators, Dispatch} from 'redux';
-import login from './login';
+import Login from './Login';
 import {connect} from 'react-redux';
 import {IApplicationState} from '../../../store';
 import {
@@ -40,4 +40,4 @@ const mapDispatchToProps = (dispatch: Dispatch): ILoginDispatchedProps =>
 export const loginConnected = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(login);
+)(Login);

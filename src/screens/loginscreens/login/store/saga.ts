@@ -6,6 +6,8 @@ import {
 } from './actions/loginActionInterface';
 import {Alert} from 'react-native';
 import auth from '@react-native-firebase/auth';
+import {NavigationActions} from 'react-navigation';
+import {screenKeys} from '../../../../constants/screenKeys';
 
 export function* loginSaga() {
   yield all([watchPost()]);
@@ -58,13 +60,14 @@ function* loginUserWatcher(action: ILoginUserAction) {
     console.log(action.loginParams.email);
     console.log(action.loginParams.password);
     try {
-      auth().signInWithEmailAndPassword(
+      yield auth().signInWithEmailAndPassword(
         action.loginParams.email,
         action.loginParams.password,
       );
+      action.navigation.navigate(screenKeys.HOME);
       console.log('Sikerült bejelentkezni');
     } catch (error) {
-      Alert.alert(error);
+      Alert.alert(error.message);
     }
   }
   console.log('vege a saganak');

@@ -2,7 +2,7 @@ import {IApplicationState} from '../../store';
 import {IHomeMappedProps, IHomeDispatchedProps} from './interface';
 import {Dispatch, bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {home} from './home';
+import Home from './Home';
 
 const mapStateToProps = (state: IApplicationState): IHomeMappedProps => ({
   homeStore: state.app.screens.home,
@@ -19,4 +19,4 @@ const mapDispatchToProps = (dispatch: Dispatch): IHomeDispatchedProps =>
 export const NewsSearchConnected = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(home);
+)(Home);

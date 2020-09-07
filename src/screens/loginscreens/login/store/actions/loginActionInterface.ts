@@ -64,6 +64,7 @@ export interface IRegisterUserAction {
 export interface ILoginUserAction {
   type: ILoginActionTypes['LOGIN_USER'];
   loginParams: ILoginParams;
+  navigation: NavigationParams;
 }
 
 export type ILoginActions =

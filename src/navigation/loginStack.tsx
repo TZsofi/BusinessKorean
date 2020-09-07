@@ -1,8 +1,5 @@
 import {screenKeys} from '../constants/screenKeys';
-import {
-  loginConnected,
-  modalConnected,
-} from '../screens/loginscreens/login/connect';
+import {loginConnected} from '../screens/loginscreens/login/connect';
 import {createStackNavigator} from 'react-navigation-stack';
 import {fbGoogleloginConnected} from '../screens/loginscreens/fbGoogleLogin/connect';
 

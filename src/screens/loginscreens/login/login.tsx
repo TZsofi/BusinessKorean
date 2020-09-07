@@ -27,7 +27,7 @@ export interface ILoginStates {
 type loginProps = ILoginNavigationProps & ILoginProps;
 type loginStates = ILoginStates;
 
-export default class login extends React.Component<loginProps, loginStates> {
+export default class Login extends React.Component<loginProps, loginStates> {
   constructor(props: loginProps) {
     super(props);
     this.state = {
@@ -100,7 +100,6 @@ export default class login extends React.Component<loginProps, loginStates> {
             <Image source={seoulOutline} style={styles.seoulImage} />
           </View>
         </LinearGradient>
-        {/*TODO:Megkerdezni erröl örsöt!!*/}
         <LoginModal
           isVisible={signInVisible}
           email={email}
@@ -113,6 +112,7 @@ export default class login extends React.Component<loginProps, loginStates> {
           hideModal={hideSignInModal}
           loginUser={loginUser}
           isSignUp={false}
+          navigation={this.props.navigation}
         />
         <LoginModal
           isVisible={signUpVisible}
@@ -126,7 +126,9 @@ export default class login extends React.Component<loginProps, loginStates> {
           hideModal={hideSignUpModal}
           loginUser={loginUser}
           isSignUp={true}
+          navigation={this.props.navigation}
         />
+        {/*TODO: feltetelt rakni hozza hogy ha nem visible ne renderelje*/}
       </View>
     );
   }

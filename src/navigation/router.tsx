@@ -1,5 +1,6 @@
 import {createSwitchNavigator} from 'react-navigation';
-import loginStack from './loginStack';
+import LoginStack from './LoginStack';
+//import MainStack from './MainStack';
 import {screenKeys} from '../constants/screenKeys';
 
 //Ezt hívom meg rögtön az App.tsx-ből
@@ -7,10 +8,11 @@ import {screenKeys} from '../constants/screenKeys';
 
 const rootSwitch = createSwitchNavigator(
   {
-    loginStack,
+    LoginStack,
+    // MainStack,
   },
   {
-    initialRouteName: screenKeys.LOGINSTACK,
+    initialRouteName: screenKeys.MAINSTACK,
   },
 );
 
